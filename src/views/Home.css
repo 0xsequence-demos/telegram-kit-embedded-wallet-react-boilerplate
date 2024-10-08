@@ -24,3 +24,21 @@
 .force-wrap {
   word-break: break-all;
 }
+
+canvas {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+
+.ui-wrapper {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
+}
