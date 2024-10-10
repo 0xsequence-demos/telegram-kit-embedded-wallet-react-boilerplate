@@ -33,12 +33,50 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
       inline_query_id: ilc.id,
       results: JSON.stringify([
         {
-          type: "article",
-          id: "asdasdsadas",
+          type: "game",
+          id: "game_1",
+          game_short_name: "tap_dance",
+        },
+        {
+          type: "gif",
+          id: "asdasdsadasgif1",
           title: "Play against a friend",
+          caption: "Play against a friend2",
+          // input_message_content: {
+          //   message_text:  "I challenge you to a game of Tap Dance!"
+          // },
+          // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
+          url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+          hide_url: true,
+          description: "test description",
+          thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/320.gif`,
+          gif_url: `${requestUrl.protocol}//${requestUrl.hostname}/640.gif`,
+          // thumbnail_width	Integer	Optional. Thumbnail width
+          // thumbnail_height	Integer	Optional. Thumbnail height
+        },
+        {
+          type: "gif",
+          id: "asdasdsadasgif2",
+          title: "Play against a friend",
+          caption: "Play against a friend2",
           input_message_content: {
-            message_text:  "I challenge you to a game of Tap Dance!"
+            message_text:  "I challenge you to a game of Tap Dance! (gif)"
           },
+          // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
+          url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+          hide_url: true,
+          description: "test description",
+          thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/320.gif`,
+          gif_url: `${requestUrl.protocol}//${requestUrl.hostname}/640.gif`,
+          // thumbnail_width	Integer	Optional. Thumbnail width
+          // thumbnail_height	Integer	Optional. Thumbnail height
+        },{
+          type: "article",
+          id: "asdasdsadas2",
+          title: "Play against a friend2",
+          // input_message_content: {
+          //   message_text:  "I challenge you to a game of Tap Dance!"
+          // },
           // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
           url: `${requestUrl.protocol}//${requestUrl.hostname}`,
           hide_url: true,
