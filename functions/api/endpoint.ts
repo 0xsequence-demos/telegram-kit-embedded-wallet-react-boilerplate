@@ -79,7 +79,15 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
             input_message_content: {
               message_text:  "I challenge you to a game of Tap Dance!"
             },
-            // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
+            reply_markup:[[{
+              text:'Play', 
+              callback_game: `${requestUrl.protocol}//${requestUrl.hostname}`,
+            },{
+              text:'Play2', 
+              web_app: {
+                url:`${requestUrl.protocol}//${requestUrl.hostname}`
+              }
+            }]],
             url: `${requestUrl.protocol}//${requestUrl.hostname}`,
             hide_url: true,
             description: "test description",
