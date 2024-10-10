@@ -38,14 +38,19 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
       );
     }
   } else if ("message" in update) {
-    const r: { ok: boolean } = await (
-      await fetch(
-        apiUrl(ctx.env.BOT_TOKEN, "sendMessage", {
-          chat_id: update.message.chat.id,
-          text: update.message.text,
-        }),
-      )
-    ).json();
+    let url = "";
+    if (/\/start/.test(update.message.text)) {
+      url = apiUrl(ctx.env.BOT_TOKEN, "sendGame", {
+        chat_id: update.message.chat.id,
+        game_short_name: "tap_dance",
+      });
+    } else {
+      url = apiUrl(ctx.env.BOT_TOKEN, "sendMessage", {
+        chat_id: update.message.chat.id,
+        text: update.message.text,
+      });
+    }
+    const r: { ok: boolean } = await (await fetch(url)).json();
     return new Response("ok" in r && r.ok ? "Ok" : JSON.stringify(r, null, 2));
   } else {
     return new Response(
