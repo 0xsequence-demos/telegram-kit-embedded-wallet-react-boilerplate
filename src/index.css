@@ -80,3 +80,11 @@ button:focus-visible {
 .break-word {
   word-break: break-word;
 }
+
+@media not (min-width: 769px) {
+  div[data-state="open"][role="dialog"] {
+    /* align-items: start !important; */
+    bottom: auto !important;
+    top: 0px !important;
+  }
+}
