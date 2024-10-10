@@ -33,15 +33,12 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
       inline_query_id: ilc.id,
       results: JSON.stringify([
         {
-          type: "game",
-          id: "game_1",
-          game_short_name: "tap_dance",
-        },
-        {
           type: "article",
           id: "asdasdsadas",
           title: "Play against a friend",
-          input_message_content: "I challenge you to a game of Tap Dance!",
+          input_message_content: {
+            message_text:  "I challenge you to a game of Tap Dance!"
+          },
           // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
           url: `${requestUrl.protocol}//${requestUrl.hostname}`,
           hide_url: true,
