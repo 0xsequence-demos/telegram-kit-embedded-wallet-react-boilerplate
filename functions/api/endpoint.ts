@@ -37,9 +37,22 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
           id: "game_1",
           game_short_name: "tap_dance",
         },
+        {
+          type: "article",
+          id: "asdasdsadas",
+          title: "Play against a friend",
+          input_message_content: "I challenge you to a game of Tap Dance!",
+          // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
+          url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+          hide_url: true,
+          description: "test description",
+          thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/happy.png`,
+          // thumbnail_width	Integer	Optional. Thumbnail width
+          // thumbnail_height	Integer	Optional. Thumbnail height
+        },
       ]),
       button: JSON.stringify({
-        text: "Play Now!",
+        text: "Play In Mini-Mode!",
         web_app: {
           url: `${requestUrl.protocol}//${requestUrl.hostname}`,
         },
