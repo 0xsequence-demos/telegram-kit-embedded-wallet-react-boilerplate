@@ -18,7 +18,33 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const update: any = await ctx.request.json();
 
-  if ("callback_query" in update) {
+  const debugUrl = apiUrl(ctx.env.BOT_TOKEN, "sendMessage", {
+    chat_id: '@bunnybones1',
+    text: 'test',
+  });
+  await (await fetch(debugUrl)).json();
+
+
+  if ("inline_query" in update) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const qbc = update.inline_query as any;
+    if ("game_short_name" in qbc) {
+    const requestUrl = new URL(ctx.request.url);
+    const responseData = {
+      callback_query_id: qbc.id,
+      url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+    };
+    console.log("respond with ", responseData);
+    const r: { ok: boolean } = await (
+      await fetch(
+        apiUrl(ctx.env.BOT_TOKEN, "answerCallbackQuery", responseData),
+      )
+    ).json();
+    return new Response(
+      "ok" in r && r.ok ? "Ok" : JSON.stringify(r, null, 2),
+    );
+  }
+  } else if ("callback_query" in update) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const qbc = update.callback_query as any;
     if ("game_short_name" in qbc) {
