@@ -71,6 +71,7 @@ function initGame(refContainer: React.MutableRefObject<HTMLDivElement | null>) {
   boom.position.y = 1.75;
   camera.rotateY(Math.PI);
   boom.add(camera);
+  camera.userData.rotationX = -Math.PI;
   const animate = function () {
     requestAnimationFrame(animate);
     const time = performance.now() * 0.001;
@@ -85,9 +86,17 @@ function initGame(refContainer: React.MutableRefObject<HTMLDivElement | null>) {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
   });
+  let usingTouch = false;
   window.addEventListener("mousemove", (ev) => {
+    if (usingTouch) {
+      return;
+    }
     boom.rotation.y = (ev.clientX / window.innerWidth - 0.5) * 4;
     boom.rotation.x = -(ev.clientY / window.innerHeight - 0.5) * 2;
+  });
+  window.addEventListener("touchstart", (ev) => {
+    void ev;
+    usingTouch = true;
   });
 }
 
