@@ -19,31 +19,36 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
   const update: any = await ctx.request.json();
 
   const debugUrl = apiUrl(ctx.env.BOT_TOKEN, "sendMessage", {
-    chat_id: '@bunnybones1',
-    text: 'test',
+    chat_id: "7320660045",
+    text: JSON.stringify(update),
   });
   await (await fetch(debugUrl)).json();
 
-
   if ("inline_query" in update) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const qbc = update.inline_query as any;
-    if ("game_short_name" in qbc) {
+    const ilc = update.inline_query as any;
+
     const requestUrl = new URL(ctx.request.url);
     const responseData = {
-      callback_query_id: qbc.id,
-      url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+      inline_query_id: ilc.id,
+      results: JSON.stringify([
+        {
+          type: "game",
+          id: "game_1",
+          game_short_name: "tap_dance",
+        },
+      ]),
+      button: JSON.stringify({
+        text: "Play Now!",
+        web_app: {
+          url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+        },
+      }),
     };
-    console.log("respond with ", responseData);
     const r: { ok: boolean } = await (
-      await fetch(
-        apiUrl(ctx.env.BOT_TOKEN, "answerCallbackQuery", responseData),
-      )
+      await fetch(apiUrl(ctx.env.BOT_TOKEN, "answerInlineQuery", responseData))
     ).json();
-    return new Response(
-      "ok" in r && r.ok ? "Ok" : JSON.stringify(r, null, 2),
-    );
-  }
+    return new Response("ok" in r && r.ok ? "Ok" : JSON.stringify(r, null, 2));
   } else if ("callback_query" in update) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const qbc = update.callback_query as any;
@@ -73,7 +78,7 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
     } else {
       url = apiUrl(ctx.env.BOT_TOKEN, "sendMessage", {
         chat_id: update.message.chat.id,
-        text: update.message.text,
+        text: update.message.text + " " + update.message.chat.id,
       });
     }
     const r: { ok: boolean } = await (await fetch(url)).json();
