@@ -35,12 +35,12 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
         [
           {
             type: "game",
-            id: "game_1",
+            id: "game1",
             game_short_name: "tap_dance",
           },
           {
             type: "gif",
-            id: "asdasdsadasgif1",
+            id: "gif1",
             title: "Play against a friend",
             caption: "Play against a friend2",
             // input_message_content: {
@@ -57,7 +57,7 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
           },
           {
             type: "gif",
-            id: "asdasdsadasgif2",
+            id: "gif2",
             title: "Play against a friend",
             caption: "Play against a friend2",
             input_message_content: {
@@ -74,7 +74,7 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
           },
           {
             type: "article",
-            id: "asdasdsadas2",
+            id: "art1",
             title: "Play against a friend2",
             input_message_content: {
               message_text: "I challenge you to a game of Tap Dance!",
@@ -104,7 +104,7 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
           },
           {
             type: "article",
-            id: "asdasdsadas1232",
+            id: "art2",
             title: "Play against a friend3",
             input_message_content: {
               message_text: "I challenge you to a game of Tap Dance!",
@@ -117,7 +117,7 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
             // thumbnail_width	Integer	Optional. Thumbnail width
             // thumbnail_height	Integer	Optional. Thumbnail height
           },
-        ].filter((p) => p.type === ilc.query || ilc.query === "all"),
+        ].filter((p) => p.id.startsWith(ilc.query) || ilc.query === "all"),
       ),
       button: JSON.stringify({
         text: "Play In Mini-Mode!",
