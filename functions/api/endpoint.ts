@@ -80,14 +80,19 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
               message_text: "I challenge you to a game of Tap Dance!",
             },
             reply_markup: {
-              inline_keyboard: [
+              keyboard: [
                 [
-                  {
-                    text: "Play",
-                    url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-                  },
+                  // {
+                  //   text: "Play",
+                  //   url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+                  // },
                   {
                     text: "Play2",
+                    web_app: {
+                      url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+                    },
+                  },{
+                    text: "Play3",
                     web_app: {
                       url: `${requestUrl.protocol}//${requestUrl.hostname}`,
                     },
