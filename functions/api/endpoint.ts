@@ -81,7 +81,7 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
             },
             reply_markup:[[{
               text:'Play', 
-              callback_game: `${requestUrl.protocol}//${requestUrl.hostname}`,
+              url: `${requestUrl.protocol}//${requestUrl.hostname}`,
             },{
               text:'Play2', 
               web_app: {
