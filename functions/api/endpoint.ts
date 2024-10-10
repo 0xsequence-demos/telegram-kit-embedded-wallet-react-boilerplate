@@ -87,6 +87,21 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
             // thumbnail_width	Integer	Optional. Thumbnail width
             // thumbnail_height	Integer	Optional. Thumbnail height
           },
+          {
+            type: "article",
+            id: "asdasdsadas1232",
+            title: "Play against a friend3",
+            input_message_content: {
+              message_text:  "I challenge you to a game of Tap Dance!"
+            },
+            // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
+            url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+            hide_url: true,
+            description: "test description3",
+            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/320.gif`,
+            // thumbnail_width	Integer	Optional. Thumbnail width
+            // thumbnail_height	Integer	Optional. Thumbnail height
+          },
         ].filter((p) => p.type === ilc.query || ilc.query === "all"),
       ),
       button: JSON.stringify({
