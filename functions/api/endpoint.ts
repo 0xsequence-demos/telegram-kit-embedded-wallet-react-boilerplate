@@ -75,24 +75,19 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
           {
             type: "article",
             id: "art1",
-            title: "Play against a friend2",
+            title: "Play against a friend1",
             input_message_content: {
-              message_text: "I challenge you to a game of Tap Dance!",
+              message_text: "I challenge you to a game of Tap Dance!1",
             },
             reply_markup: {
-              keyboard: [
+              inline_keyboard: [
                 [
-                  // {
-                  //   text: "Play",
-                  //   url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-                  // },
+                  {
+                    text: "Play",
+                    url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+                  },
                   {
                     text: "Play2",
-                    web_app: {
-                      url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-                    },
-                  },{
-                    text: "Play3",
                     web_app: {
                       url: `${requestUrl.protocol}//${requestUrl.hostname}`,
                     },
@@ -110,9 +105,89 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
           {
             type: "article",
             id: "art2",
+            title: "Play against a friend2",
+            input_message_content: {
+              message_text: "I challenge you to a game of Tap Dance!2",
+            },
+            reply_markup: {
+              inline_keyboard: [
+                [
+                  {
+                    text: "Play",
+                    url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+                  },
+                  {
+                    text: "Play2",
+                    web_app: {
+                      url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+                    },
+                  },
+                ],
+              ],
+            },
+            url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+            hide_url: true,
+            description: "test description",
+            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/happy.png`,
+            // thumbnail_width	Integer	Optional. Thumbnail width
+            // thumbnail_height	Integer	Optional. Thumbnail height
+          },
+          {
+            type: "article",
+            id: "art3",
             title: "Play against a friend3",
             input_message_content: {
-              message_text: "I challenge you to a game of Tap Dance!",
+              message_text: "I challenge you to a game of Tap Dance!3",
+            },
+            reply_markup: {
+              inline_keyboard: [
+                [
+                  {
+                    text: "Play2",
+                    web_app: {
+                      url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+                    },
+                  },
+                ],
+              ],
+            },
+            url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+            hide_url: true,
+            description: "test description",
+            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/happy.png`,
+            // thumbnail_width	Integer	Optional. Thumbnail width
+            // thumbnail_height	Integer	Optional. Thumbnail height
+          },
+          {
+            type: "article",
+            id: "art4",
+            title: "Play against a friend4",
+            input_message_content: {
+              message_text: "I challenge you to a game of Tap Dance!4",
+            },
+            reply_markup: {
+              inline_keyboard: [
+                [
+                  {
+                    text: "Play",
+                    url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+                  }
+                ],
+              ],
+            },
+            url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+            hide_url: true,
+            description: "test description",
+            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/happy.png`,
+            // thumbnail_width	Integer	Optional. Thumbnail width
+            // thumbnail_height	Integer	Optional. Thumbnail height
+          },
+          {
+            type: "article",
+            id: "art5",
+            title: "Play against a friend5",
+            input_message_content: {
+              message_text: "I challenge you to a game of Tap Dance!5",
             },
             // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
             url: `${requestUrl.protocol}//${requestUrl.hostname}`,
