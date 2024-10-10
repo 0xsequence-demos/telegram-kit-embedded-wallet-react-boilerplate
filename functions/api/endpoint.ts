@@ -77,17 +77,24 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
             id: "asdasdsadas2",
             title: "Play against a friend2",
             input_message_content: {
-              message_text:  "I challenge you to a game of Tap Dance!"
+              message_text: "I challenge you to a game of Tap Dance!",
             },
-            reply_markup:[[{
-              text:'Play', 
-              url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-            },{
-              text:'Play2', 
-              web_app: {
-                url:`${requestUrl.protocol}//${requestUrl.hostname}`
-              }
-            }]],
+            reply_markup: {
+              inline_keyboard: [
+                [
+                  {
+                    text: "Play",
+                    url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+                  },
+                  {
+                    text: "Play2",
+                    web_app: {
+                      url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+                    },
+                  },
+                ],
+              ],
+            },
             url: `${requestUrl.protocol}//${requestUrl.hostname}`,
             hide_url: true,
             description: "test description",
@@ -100,7 +107,7 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
             id: "asdasdsadas1232",
             title: "Play against a friend3",
             input_message_content: {
-              message_text:  "I challenge you to a game of Tap Dance!"
+              message_text: "I challenge you to a game of Tap Dance!",
             },
             // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
             url: `${requestUrl.protocol}//${requestUrl.hostname}`,
