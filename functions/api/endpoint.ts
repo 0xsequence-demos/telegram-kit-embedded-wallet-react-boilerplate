@@ -76,9 +76,9 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
             type: "article",
             id: "asdasdsadas2",
             title: "Play against a friend2",
-            // input_message_content: {
-            //   message_text:  "I challenge you to a game of Tap Dance!"
-            // },
+            input_message_content: {
+              message_text:  "I challenge you to a game of Tap Dance!"
+            },
             // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
             url: `${requestUrl.protocol}//${requestUrl.hostname}`,
             hide_url: true,
