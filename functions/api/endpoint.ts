@@ -208,7 +208,7 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
             url: `${requestUrl.protocol}//${requestUrl.hostname}`,
             hide_url: true,
             description: "test description2",
-            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/320.gif`,
+            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/happy.png`,
             // thumbnail_width	Integer	Optional. Thumbnail width
             // thumbnail_height	Integer	Optional. Thumbnail height
           },
@@ -237,7 +237,33 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
             url: `${requestUrl.protocol}//${requestUrl.hostname}`,
             hide_url: true,
             description: "test description3",
-            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/320.gif`,
+            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/happy.png`,
+            // thumbnail_width	Integer	Optional. Thumbnail width
+            // thumbnail_height	Integer	Optional. Thumbnail height
+          },
+          {
+            type: "article",
+            id: "art4",
+            title: "Play against a friend4",
+            reply_markup: {
+              inline_keyboard: [
+                [
+                  {
+                    text: "Play",
+                    switch_inline_query_chosen_chat: {
+                      query: "",
+                      allow_user_chats: true,
+                      allow_group_chats: true,
+                    },
+                  },
+                ],
+              ],
+            },
+            // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
+            url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+            hide_url: true,
+            description: "test description4",
+            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/happy.png`,
             // thumbnail_width	Integer	Optional. Thumbnail width
             // thumbnail_height	Integer	Optional. Thumbnail height
           },
