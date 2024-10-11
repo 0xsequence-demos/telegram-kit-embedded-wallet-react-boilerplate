@@ -245,6 +245,11 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
             type: "article",
             id: "art4",
             title: "Play against a friend4",
+            input_message_content: {
+              // eslint-disable-next-line no-irregular-whitespace
+              message_text: `[​​​​​​​​​​​](${requestUrl.protocol}//${requestUrl.hostname}/happy.png) I challenge you to a game of Tap Dance!4`,
+              parse_mode: "markdown",
+            },
             reply_markup: {
               inline_keyboard: [
                 [
