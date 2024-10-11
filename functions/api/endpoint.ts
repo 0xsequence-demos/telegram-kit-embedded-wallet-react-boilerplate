@@ -334,9 +334,22 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
         game_short_name: "tap_dance",
       });
     } else {
+      const requestUrl = new URL(ctx.request.url);
       url = apiUrl(ctx.env.BOT_TOKEN, "sendMessage", {
         chat_id: update.message.chat.id,
         text: update.message.text + " " + update.message.chat.id,
+        reply_markup: JSON.stringify({
+          inline_keyboard: [
+            [
+              {
+                text: "Play",
+                web_app: {
+                  url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+                },
+              },
+            ],
+          ],
+        }),
       });
     }
     const r: { ok: boolean } = await (await fetch(url)).json();
