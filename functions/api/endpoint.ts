@@ -317,12 +317,6 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
         url: `${requestUrl.protocol}//${requestUrl.hostname}`,
       };
 
-      const msgUrl = apiUrl(ctx.env.BOT_TOKEN, "sendMessage", {
-        chat_id: qbc.from.id,
-        text: `Sequence Tap Dance is a demo of a Telegram app that uses Sequence to authenticate users. The source code for the telegram bot and the webapp are available at https://github.com/0xsequence/telegram-kit-embedded-wallet-react-boilerplate`,
-      });
-      await fetch(msgUrl);
-
       const r: { ok: boolean } = await (
         await fetch(
           apiUrl(ctx.env.BOT_TOKEN, "answerCallbackQuery", responseData),
@@ -337,6 +331,12 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
           callback_query_id: qbc.id,
           text: `Sequence Tap Dance is a demo of a Telegram app that uses Sequence to authenticate users. The source code for the telegram bot and the webapp are available at https://github.com/0xsequence/telegram-kit-embedded-wallet-react-boilerplate`,
         };
+        const msgUrl = apiUrl(ctx.env.BOT_TOKEN, "sendMessage", {
+          chat_id: qbc.from.id,
+          text: `Sequence Tap Dance is a demo of a Telegram app that uses Sequence to authenticate users. The source code for the telegram bot and the webapp are available at https://github.com/0xsequence/telegram-kit-embedded-wallet-react-boilerplate`,
+        });
+        await fetch(msgUrl);
+  
         const r: { ok: boolean } = await (
           await fetch(
             apiUrl(ctx.env.BOT_TOKEN, "answerCallbackQuery", responseData),
