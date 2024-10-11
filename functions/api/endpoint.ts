@@ -204,14 +204,10 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
               inline_keyboard: [
                 [
                   {
-                    text: "Play",
-                    url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-                  },
-                  {
                     text: "Play2",
-                    web_app: {
+                    web_app: JSON.stringify({
                       url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-                    },
+                    }),
                   },
                 ],
               ],
