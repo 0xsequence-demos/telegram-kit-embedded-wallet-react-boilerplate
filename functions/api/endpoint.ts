@@ -177,18 +177,12 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
                     text: "Play",
                     url: `${requestUrl.protocol}//${requestUrl.hostname}`,
                   },
-                  {
-                    text: "Play2",
-                    web_app: {
-                      url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-                    },
-                  },
                 ],
               ],
             },
             url: `${requestUrl.protocol}//${requestUrl.hostname}`,
             hide_url: true,
-            description: "test description",
+            description: "test description1",
             thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/happy.png`,
             // thumbnail_width	Integer	Optional. Thumbnail width
             // thumbnail_height	Integer	Optional. Thumbnail height
@@ -204,82 +198,6 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
               inline_keyboard: [
                 [
                   {
-                    text: "Play2",
-                    web_app: JSON.stringify({
-                      url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-                    }),
-                  },
-                ],
-              ],
-            },
-            url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-            hide_url: true,
-            description: "test description",
-            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/happy.png`,
-            // thumbnail_width	Integer	Optional. Thumbnail width
-            // thumbnail_height	Integer	Optional. Thumbnail height
-          },
-          {
-            type: "article",
-            id: "art3",
-            title: "Play against a friend3",
-            input_message_content: {
-              message_text: "I challenge you to a game of Tap Dance!3",
-            },
-            reply_markup: {
-              inline_keyboard: [
-                [
-                  {
-                    text: "Play2",
-                    web_app: {
-                      url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-                    },
-                  },
-                ],
-              ],
-            },
-            url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-            hide_url: true,
-            description: "test description",
-            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/happy.png`,
-            // thumbnail_width	Integer	Optional. Thumbnail width
-            // thumbnail_height	Integer	Optional. Thumbnail height
-          },
-          {
-            type: "article",
-            id: "art4",
-            title: "Play against a friend4",
-            input_message_content: {
-              message_text: "I challenge you to a game of Tap Dance!4",
-            },
-            reply_markup: {
-              inline_keyboard: [
-                [
-                  {
-                    text: "Play",
-                    url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-                  },
-                ],
-              ],
-            },
-            url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-            hide_url: true,
-            description: "test description",
-            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/happy.png`,
-            // thumbnail_width	Integer	Optional. Thumbnail width
-            // thumbnail_height	Integer	Optional. Thumbnail height
-          },
-          {
-            type: "article",
-            id: "art5",
-            title: "Play against a friend5",
-            input_message_content: {
-              message_text: "I challenge you to a game of Tap Dance!5",
-            },
-            reply_markup: {
-              inline_keyboard: [
-                [
-                  {
                     text: "Play",
                     switch_inline_query_current_chat: "",
                   },
@@ -289,17 +207,17 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
             // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
             url: `${requestUrl.protocol}//${requestUrl.hostname}`,
             hide_url: true,
-            description: "test description3",
+            description: "test description2",
             thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/320.gif`,
             // thumbnail_width	Integer	Optional. Thumbnail width
             // thumbnail_height	Integer	Optional. Thumbnail height
           },
           {
             type: "article",
-            id: "art6",
-            title: "Play against a friend6",
+            id: "art3",
+            title: "Play against a friend3",
             input_message_content: {
-              message_text: "I challenge you to a game of Tap Dance!6",
+              message_text: "I challenge you to a game of Tap Dance!3",
             },
             reply_markup: {
               inline_keyboard: [
