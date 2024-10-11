@@ -33,6 +33,40 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
             game_short_name: "tap_dance",
           },
           {
+            type: "game",
+            id: "game2",
+            game_short_name: "tap_dance",
+            reply_markup: {
+              inline_keyboard: [
+                [
+                  {
+                    text: "Start",
+                    callback_game: {},
+                  },
+                ],
+              ],
+            },
+          },
+          {
+            type: "game",
+            id: "game3",
+            game_short_name: "tap_dance",
+            reply_markup: {
+              inline_keyboard: [
+                [
+                  {
+                    text: "Start",
+                    callback_game: {},
+                  },
+                  {
+                    text: "Play",
+                    url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+                  },
+                ],
+              ],
+            },
+          },
+          {
             type: "gif",
             id: "gif1",
             title: "Play against a friend",
