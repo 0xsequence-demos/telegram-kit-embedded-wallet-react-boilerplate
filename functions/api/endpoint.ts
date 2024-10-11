@@ -335,9 +335,12 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
       });
     } else {
       const requestUrl = new URL(ctx.request.url);
-      url = apiUrl(ctx.env.BOT_TOKEN, "sendMessage", {
+      url = apiUrl(ctx.env.BOT_TOKEN, "sendAnimation", {
         chat_id: update.message.chat.id,
-        text: "Welcome to our demo bot! Play Sequence Tap Dance to see how Sequence integrates with Telegram Webapps",
+        animation: `${requestUrl.protocol}//${requestUrl.hostname}/640.gif`,
+        thumbnail: `${requestUrl.protocol}//${requestUrl.hostname}/320.gif`,
+        caption: "Welcome to our demo bot! Play Sequence Tap Dance to see how Sequence integrates with Telegram Webapps",
+        show_caption_above_media: 'True',
         reply_markup: JSON.stringify({
           inline_keyboard: [
             [
@@ -348,11 +351,7 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
                 },
               },
               {
-                text: "Share1",
-                switch_inline_query_current_chat: '',
-              },
-              {
-                text: "Share2",
+                text: "Share",
                 switch_inline_query_chosen_chat: {
                   query: '',
                   allow_user_chats: true,
