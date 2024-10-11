@@ -69,7 +69,7 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
                   {
                     text: "Play",
                     url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-                  }
+                  },
                 ],
               ],
             },
@@ -94,8 +94,8 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
                 [
                   {
                     text: "Play",
-                    switch_inline_query_current_chat: '',
-                  }
+                    switch_inline_query_current_chat: "",
+                  },
                 ],
               ],
             },
@@ -155,8 +155,8 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
                 [
                   {
                     text: "Play",
-                    switch_inline_query_current_chat: '',
-                  }
+                    switch_inline_query_current_chat: "",
+                  },
                 ],
               ],
             },
@@ -268,7 +268,7 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
                   {
                     text: "Play",
                     url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-                  }
+                  },
                 ],
               ],
             },
@@ -316,7 +316,6 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
         callback_query_id: qbc.id,
         url: `${requestUrl.protocol}//${requestUrl.hostname}`,
       };
-      console.log("respond with ", responseData);
       const r: { ok: boolean } = await (
         await fetch(
           apiUrl(ctx.env.BOT_TOKEN, "answerCallbackQuery", responseData),
@@ -325,6 +324,21 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
       return new Response(
         "ok" in r && r.ok ? "Ok" : JSON.stringify(r, null, 2),
       );
+    } else if ("data" in qbc) {
+      if (qbc.data === "learn-more") {
+        const responseData = {
+          callback_query_id: qbc.id,
+          text: `Sequence Tap Dance is a demo of a Telegram app that uses Sequence to authenticate users. The source code for the telegram bot and the webapp are available at https://github.com/0xsequence/telegram-kit-embedded-wallet-react-boilerplate`,
+        };
+        const r: { ok: boolean } = await (
+          await fetch(
+            apiUrl(ctx.env.BOT_TOKEN, "answerCallbackQuery", responseData),
+          )
+        ).json();
+        return new Response(
+          "ok" in r && r.ok ? "Ok" : JSON.stringify(r, null, 2),
+        );
+      }
     }
   } else if ("message" in update) {
     let url = "";
@@ -339,8 +353,9 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
         chat_id: update.message.chat.id,
         animation: `${requestUrl.protocol}//${requestUrl.hostname}/640.gif`,
         thumbnail: `${requestUrl.protocol}//${requestUrl.hostname}/happy.jpeg`,
-        caption: "Play Sequence Tap Dance to see how Sequence integrates with Telegram Webapps",
-        show_caption_above_media: 'True',
+        caption:
+          "Play Sequence Tap Dance to see how Sequence integrates with Telegram Webapps",
+        show_caption_above_media: "True",
         reply_markup: JSON.stringify({
           inline_keyboard: [
             [
@@ -349,18 +364,21 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
                 web_app: {
                   url: `${requestUrl.protocol}//${requestUrl.hostname}`,
                 },
-              }],[
-                {
-                  text: "Share",
-                  switch_inline_query_chosen_chat: {
-                    query: '',
-                    allow_user_chats: true,
-                    allow_group_chats: true
-                  },
-                },{
-                  text: "Learn More",
-                  callback_data: 'learn-more',
-                }
+              },
+            ],
+            [
+              {
+                text: "Share",
+                switch_inline_query_chosen_chat: {
+                  query: "",
+                  allow_user_chats: true,
+                  allow_group_chats: true,
+                },
+              },
+              {
+                text: "Learn More",
+                callback_data: "learn-more",
+              },
             ],
           ],
         }),
