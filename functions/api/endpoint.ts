@@ -338,7 +338,7 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
       url = apiUrl(ctx.env.BOT_TOKEN, "sendAnimation", {
         chat_id: update.message.chat.id,
         animation: `${requestUrl.protocol}//${requestUrl.hostname}/640.gif`,
-        thumbnail: `${requestUrl.protocol}//${requestUrl.hostname}/320.gif`,
+        thumbnail: `${requestUrl.protocol}//${requestUrl.hostname}/happy.jpeg`,
         caption: "Welcome to our demo bot! Play Sequence Tap Dance to see how Sequence integrates with Telegram Webapps",
         show_caption_above_media: 'True',
         reply_markup: JSON.stringify({
