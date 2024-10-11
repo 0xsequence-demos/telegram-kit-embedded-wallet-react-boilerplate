@@ -79,7 +79,7 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
         "ok" in r && r.ok ? "Ok" : JSON.stringify(r, null, 2),
       );
     } else if ("data" in cbq) {
-      if (cbq.data === "learn-more") {
+      if (cbq.data === "more-info") {
         const msgUrl = apiUrl(ctx.env.BOT_TOKEN, "sendMessage", {
           chat_id: cbq.from.id,
           text: botFullDescription,
@@ -140,8 +140,8 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
                 },
               },
               {
-                text: "Learn More",
-                callback_data: "learn-more",
+                text: "More Info",
+                callback_data: "more-info",
               },
             ],
           ],
