@@ -22,7 +22,7 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
     chat_id: "7320660045",
     text: JSON.stringify(update),
   });
-  await (await fetch(debugUrl)).json();
+  await fetch(debugUrl);
 
   if ("inline_query" in update) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -318,10 +318,10 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
       };
 
       const msgUrl = apiUrl(ctx.env.BOT_TOKEN, "sendMessage", {
-        chat_id: qbc.chat_instance,
+        chat_id: qbc.from.id,
         text: `Sequence Tap Dance is a demo of a Telegram app that uses Sequence to authenticate users. The source code for the telegram bot and the webapp are available at https://github.com/0xsequence/telegram-kit-embedded-wallet-react-boilerplate`,
       });
-      await (await fetch(msgUrl)).json();
+      await fetch(msgUrl);
 
       const r: { ok: boolean } = await (
         await fetch(
