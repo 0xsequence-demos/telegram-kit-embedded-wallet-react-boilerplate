@@ -316,6 +316,13 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
         callback_query_id: qbc.id,
         url: `${requestUrl.protocol}//${requestUrl.hostname}`,
       };
+
+      const msgUrl = apiUrl(ctx.env.BOT_TOKEN, "sendMessage", {
+        chat_id: qbc.chat_instance,
+        text: `Sequence Tap Dance is a demo of a Telegram app that uses Sequence to authenticate users. The source code for the telegram bot and the webapp are available at https://github.com/0xsequence/telegram-kit-embedded-wallet-react-boilerplate`,
+      });
+      await (await fetch(msgUrl)).json();
+
       const r: { ok: boolean } = await (
         await fetch(
           apiUrl(ctx.env.BOT_TOKEN, "answerCallbackQuery", responseData),
