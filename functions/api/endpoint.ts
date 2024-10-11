@@ -339,25 +339,28 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
         chat_id: update.message.chat.id,
         animation: `${requestUrl.protocol}//${requestUrl.hostname}/640.gif`,
         thumbnail: `${requestUrl.protocol}//${requestUrl.hostname}/happy.jpeg`,
-        caption: "Welcome to our demo bot! Play Sequence Tap Dance to see how Sequence integrates with Telegram Webapps",
+        caption: "Play Sequence Tap Dance to see how Sequence integrates with Telegram Webapps",
         show_caption_above_media: 'True',
         reply_markup: JSON.stringify({
           inline_keyboard: [
             [
               {
-                text: "Play Tap Dance",
+                text: "Play Now",
                 web_app: {
                   url: `${requestUrl.protocol}//${requestUrl.hostname}`,
                 },
-              },
-              {
-                text: "Share",
-                switch_inline_query_chosen_chat: {
-                  query: '',
-                  allow_user_chats: true,
-                  allow_group_chats: true
-                },
-              }
+              }],[
+                {
+                  text: "Share",
+                  switch_inline_query_chosen_chat: {
+                    query: '',
+                    allow_user_chats: true,
+                    allow_group_chats: true
+                  },
+                },{
+                  text: "Learn More",
+                  callback_data: 'learn-more',
+                }
             ],
           ],
         }),
