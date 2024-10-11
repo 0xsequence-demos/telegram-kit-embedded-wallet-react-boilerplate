@@ -3,6 +3,8 @@ interface IEnv {
   BOT_SECRET: string; // A-Z, a-z, 0-9, _ and -
 }
 
+const botFullDescription = `Sequence Tap Dance is a demo of a Telegram app that uses Sequence to authenticate users. The source code for the telegram bot and the webapp are available at https://github.com/0xsequence/telegram-kit-embedded-wallet-react-boilerplate`;
+
 /**
  * Return url to telegram api, optionally with parameters added
  */
@@ -15,41 +17,29 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
     return new Response("Unauthorized", { status: 403 });
   }
 
+  const requestUrl = new URL(ctx.request.url);
+  const webappUrl = `${requestUrl.protocol}//${requestUrl.hostname}`;
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const update: any = await ctx.request.json();
 
   if ("inline_query" in update) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const ilc = update.inline_query as any;
+    const ilq = update.inline_query as any;
 
-    const requestUrl = new URL(ctx.request.url);
-    const responseData = {
-      inline_query_id: ilc.id,
+    const params = {
+      inline_query_id: ilq.id,
+      button: JSON.stringify({
+        text: "Quick Play In Mini-Mode!",
+        web_app: {
+          url: webappUrl,
+        },
+      }),
       results: JSON.stringify(
         [
           {
             type: "game",
-            id: "game1",
-            game_short_name: "tap_dance",
-          },
-          {
-            type: "game",
-            id: "game2",
-            game_short_name: "tap_dance",
-            reply_markup: {
-              inline_keyboard: [
-                [
-                  {
-                    text: "Start",
-                    callback_game: {},
-                  },
-                ],
-              ],
-            },
-          },
-          {
-            type: "game",
-            id: "game3",
+            id: "game",
             game_short_name: "tap_dance",
             reply_markup: {
               inline_keyboard: [
@@ -66,342 +56,42 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
               ],
             },
           },
-          {
-            type: "gif",
-            id: "gif1",
-            title: "Play against a friend",
-            caption: "Play against a friend2",
-            // input_message_content: {
-            //   message_text:  "I challenge you to a game of Tap Dance!"
-            // },
-            // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
-            url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-            hide_url: true,
-            description: "test description",
-            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/320.gif`,
-            gif_url: `${requestUrl.protocol}//${requestUrl.hostname}/640.gif`,
-            // thumbnail_width	Integer	Optional. Thumbnail width
-            // thumbnail_height	Integer	Optional. Thumbnail height
-          },
-          {
-            type: "gif",
-            id: "gif2",
-            title: "Play against a friend",
-            caption: "Play against a friend2",
-            input_message_content: {
-              message_text: "I challenge you to a game of Tap Dance! (gif)",
-            },
-            reply_markup: {
-              inline_keyboard: [
-                [
-                  {
-                    text: "Play",
-                    url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-                  },
-                ],
-              ],
-            },
-            url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-            hide_url: true,
-            description: "test description",
-            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/320.gif`,
-            gif_url: `${requestUrl.protocol}//${requestUrl.hostname}/640.gif`,
-            // thumbnail_width	Integer	Optional. Thumbnail width
-            // thumbnail_height	Integer	Optional. Thumbnail height
-          },
-          {
-            type: "gif",
-            id: "gif3",
-            title: "Play against a friend",
-            caption: "Play against a friend3",
-            // input_message_content: {
-            //   message_text: "I challenge you to a game of Tap Dance! (gif)",
-            // },
-            reply_markup: {
-              inline_keyboard: [
-                [
-                  {
-                    text: "Play",
-                    switch_inline_query_current_chat: "",
-                  },
-                ],
-              ],
-            },
-            // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
-            url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-            hide_url: true,
-            description: "test description",
-            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/320.gif`,
-            gif_url: `${requestUrl.protocol}//${requestUrl.hostname}/640.gif`,
-            // thumbnail_width	Integer	Optional. Thumbnail width
-            // thumbnail_height	Integer	Optional. Thumbnail height
-          },
-          {
-            type: "gif",
-            id: "gif4",
-            title: "Play against a friend",
-            caption: "Play against a friend4",
-            // input_message_content: {
-            //   message_text: "I challenge you to a game of Tap Dance! (gif)",
-            // },
-            // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
-            url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-            hide_url: true,
-            description: "test description",
-            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/320.gif`,
-            gif_url: `${requestUrl.protocol}//${requestUrl.hostname}/640.gif`,
-            // thumbnail_width	Integer	Optional. Thumbnail width
-            // thumbnail_height	Integer	Optional. Thumbnail height
-          },
-          {
-            type: "gif",
-            id: "gif5",
-            title: "Play against a friend",
-            caption: "Play against a friend5",
-            // input_message_content: {
-            //   message_text: "I challenge you to a game of Tap Dance! (gif)",
-            // },
-            // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
-            url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-            hide_url: true,
-            description: "test description",
-            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/320.gif`,
-            gif_url: `${requestUrl.protocol}//${requestUrl.hostname}/640.gif`,
-            // thumbnail_width	Integer	Optional. Thumbnail width
-            // thumbnail_height	Integer	Optional. Thumbnail height
-          },
-          {
-            type: "gif",
-            id: "gif6",
-            title: "Play against a friend",
-            caption: "Play against a friend6",
-            // input_message_content: {
-            //   message_text: "I challenge you to a game of Tap Dance! (gif)",
-            // },
-            reply_markup: {
-              inline_keyboard: [
-                [
-                  {
-                    text: "Play",
-                    switch_inline_query_current_chat: "",
-                  },
-                ],
-              ],
-            },
-            // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
-            url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-            hide_url: true,
-            description: "test description",
-            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/320.gif`,
-            gif_url: `${requestUrl.protocol}//${requestUrl.hostname}/640.gif`,
-            // thumbnail_width	Integer	Optional. Thumbnail width
-            // thumbnail_height	Integer	Optional. Thumbnail height
-          },
-          {
-            type: "article",
-            id: "art1",
-            title: "Play against a friend1",
-            input_message_content: {
-              message_text: "I challenge you to a game of Tap Dance!1",
-            },
-            reply_markup: {
-              inline_keyboard: [
-                [
-                  {
-                    text: "Play",
-                    url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-                  },
-                ],
-              ],
-            },
-            url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-            hide_url: true,
-            description: "test description1",
-            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/happy.png`,
-            // thumbnail_width	Integer	Optional. Thumbnail width
-            // thumbnail_height	Integer	Optional. Thumbnail height
-          },
-          {
-            type: "article",
-            id: "art2",
-            title: "Play against a friend2",
-            input_message_content: {
-              message_text: "I challenge you to a game of Tap Dance!2",
-            },
-            reply_markup: {
-              inline_keyboard: [
-                [
-                  {
-                    text: "Play",
-                    switch_inline_query_current_chat: "",
-                  },
-                ],
-              ],
-            },
-            // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
-            url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-            hide_url: true,
-            description: "test description2",
-            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/happy.png`,
-            // thumbnail_width	Integer	Optional. Thumbnail width
-            // thumbnail_height	Integer	Optional. Thumbnail height
-          },
-          {
-            type: "article",
-            id: "art3",
-            title: "Play against a friend3",
-            input_message_content: {
-              message_text: "I challenge you to a game of Tap Dance!3",
-            },
-            reply_markup: {
-              inline_keyboard: [
-                [
-                  {
-                    text: "Play",
-                    switch_inline_query_chosen_chat: {
-                      query: "",
-                      allow_user_chats: true,
-                      allow_group_chats: true,
-                    },
-                  },
-                ],
-              ],
-            },
-            // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
-            url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-            hide_url: true,
-            description: "test description3",
-            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/happy.png`,
-            // thumbnail_width	Integer	Optional. Thumbnail width
-            // thumbnail_height	Integer	Optional. Thumbnail height
-          },
-          {
-            type: "article",
-            id: "art4",
-            title: "Play against a friend4",
-            input_message_content: {
-              // eslint-disable-next-line no-irregular-whitespace
-              message_text: `[​​​​​​​​​​​](${requestUrl.protocol}//${requestUrl.hostname}/happy.png) I challenge you to a game of Tap Dance!4`,
-              parse_mode: "markdown",
-            },
-            reply_markup: {
-              inline_keyboard: [
-                [
-                  {
-                    text: "Start",
-                    switch_inline_query_current_chat: "",
-                  },
-                ],
-              ],
-            },
-            // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
-            url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-            hide_url: true,
-            description: "test description4",
-            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/happy.png`,
-            // thumbnail_width	Integer	Optional. Thumbnail width
-            // thumbnail_height	Integer	Optional. Thumbnail height
-          },
-          {
-            type: "article",
-            id: "art5",
-            title: "Play against a friend5",
-            input_message_content: {
-              // eslint-disable-next-line no-irregular-whitespace
-              message_text: `[​​​​​​​​​​​](${requestUrl.protocol}//${requestUrl.hostname}/happy.png) I challenge you to a game of Tap Dance!5`,
-              parse_mode: "markdown",
-            },
-            reply_markup: {
-              inline_keyboard: [
-                [
-                  {
-                    text: "Start",
-                    callback_game: {},
-                  },
-                ],
-              ],
-            },
-            // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
-            url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-            hide_url: true,
-            description: "test description5",
-            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/happy.png`,
-            // thumbnail_width	Integer	Optional. Thumbnail width
-            // thumbnail_height	Integer	Optional. Thumbnail height
-          },
-          {
-            type: "article",
-            id: "art6",
-            title: "Play against a friend6",
-            input_message_content: {
-              // eslint-disable-next-line no-irregular-whitespace
-              message_text: `[​​​​​​​​​​​](${requestUrl.protocol}//${requestUrl.hostname}/happy.png) I challenge you to a game of Tap Dance!6`,
-              parse_mode: "markdown",
-            },
-            reply_markup: {
-              inline_keyboard: [
-                [
-                  {
-                    text: "Start",
-                    callback_game: "tap_dance",
-                  },
-                ],
-              ],
-            },
-            // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
-            url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-            hide_url: true,
-            description: "test description6",
-            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/happy.png`,
-            // thumbnail_width	Integer	Optional. Thumbnail width
-            // thumbnail_height	Integer	Optional. Thumbnail height
-          },
-        ].filter((p) => p.id.startsWith(ilc.query) || ilc.query === "all"),
+        ].filter((p) => p.id.startsWith(ilq.query) || ilq.query === "all"),
       ),
-      button: JSON.stringify({
-        text: "Quick Play In Mini-Mode!",
-        web_app: {
-          url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-        },
-      }),
     };
     const r: { ok: boolean } = await (
-      await fetch(apiUrl(ctx.env.BOT_TOKEN, "answerInlineQuery", responseData))
+      await fetch(apiUrl(ctx.env.BOT_TOKEN, "answerInlineQuery", params))
     ).json();
     return new Response("ok" in r && r.ok ? "Ok" : JSON.stringify(r, null, 2));
   } else if ("callback_query" in update) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const qbc = update.callback_query as any;
-    if ("game_short_name" in qbc) {
-      const requestUrl = new URL(ctx.request.url);
-      const responseData = {
-        callback_query_id: qbc.id,
-        url: `${requestUrl.protocol}//${requestUrl.hostname}`,
-      };
-
+    const cbq = update.callback_query as any;
+    if ("game_short_name" in cbq) {
       const r: { ok: boolean } = await (
         await fetch(
-          apiUrl(ctx.env.BOT_TOKEN, "answerCallbackQuery", responseData),
+          apiUrl(ctx.env.BOT_TOKEN, "answerCallbackQuery", {
+            callback_query_id: cbq.id,
+            url: webappUrl,
+          }),
         )
       ).json();
       return new Response(
         "ok" in r && r.ok ? "Ok" : JSON.stringify(r, null, 2),
       );
-    } else if ("data" in qbc) {
-      if (qbc.data === "learn-more") {
-        const responseData = {
-          callback_query_id: qbc.id,
-          text: `Sequence Tap Dance is a demo of a Telegram app that uses Sequence to authenticate users. The source code for the telegram bot and the webapp are available at https://github.com/0xsequence/telegram-kit-embedded-wallet-react-boilerplate`,
-        };
+    } else if ("data" in cbq) {
+      if (cbq.data === "learn-more") {
         const msgUrl = apiUrl(ctx.env.BOT_TOKEN, "sendMessage", {
-          chat_id: qbc.from.id,
-          text: `Sequence Tap Dance is a demo of a Telegram app that uses Sequence to authenticate users. The source code for the telegram bot and the webapp are available at https://github.com/0xsequence/telegram-kit-embedded-wallet-react-boilerplate`,
+          chat_id: cbq.from.id,
+          text: botFullDescription,
         });
         await fetch(msgUrl);
 
         const r: { ok: boolean } = await (
           await fetch(
-            apiUrl(ctx.env.BOT_TOKEN, "answerCallbackQuery", responseData),
+            apiUrl(ctx.env.BOT_TOKEN, "answerCallbackQuery", {
+              callback_query_id: cbq.id,
+              text: botFullDescription,
+            }),
           )
         ).json();
         return new Response(
@@ -411,29 +101,22 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
     }
   } else if ("message" in update) {
     let url = "";
-    if (/\/game/.test(update.message.text)) {
-      url = apiUrl(ctx.env.BOT_TOKEN, "sendGame", {
-        chat_id: update.message.chat.id,
-        game_short_name: "tap_dance",
-      });
-    } else if (/\/init/.test(update.message.text)) {
-      const requestUrl = new URL(ctx.request.url);
+    if (/\/init/.test(update.message.text)) {
       url = apiUrl(ctx.env.BOT_TOKEN, "setChatMenuButton", {
         chat_id: update.message.chat.id,
         menu_button: JSON.stringify({
           type: "web_app",
           text: "Play",
           web_app: {
-            url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+            url: webappUrl,
           },
         }),
       });
     } else if (/\/start/.test(update.message.text)) {
-      const requestUrl = new URL(ctx.request.url);
       url = apiUrl(ctx.env.BOT_TOKEN, "sendAnimation", {
         chat_id: update.message.chat.id,
-        animation: `${requestUrl.protocol}//${requestUrl.hostname}/640.gif`,
-        thumbnail: `${requestUrl.protocol}//${requestUrl.hostname}/happy.jpeg`,
+        animation: `${webappUrl}/640.gif`,
+        thumbnail: `${webappUrl}/happy.jpeg`,
         caption:
           "Play Sequence Tap Dance to see how Sequence integrates with Telegram Webapps",
         show_caption_above_media: "True",
@@ -443,7 +126,7 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
               {
                 text: "Play Now",
                 web_app: {
-                  url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+                  url: webappUrl,
                 },
               },
             ],
