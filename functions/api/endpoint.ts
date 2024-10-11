@@ -86,9 +86,9 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
             id: "gif3",
             title: "Play against a friend",
             caption: "Play against a friend3",
-            input_message_content: {
-              message_text: "I challenge you to a game of Tap Dance! (gif)",
-            },
+            // input_message_content: {
+            //   message_text: "I challenge you to a game of Tap Dance! (gif)",
+            // },
             reply_markup: {
               inline_keyboard: [
                 [
@@ -113,9 +113,9 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
             id: "gif4",
             title: "Play against a friend",
             caption: "Play against a friend4",
-            input_message_content: {
-              message_text: "I challenge you to a game of Tap Dance! (gif)",
-            },
+            // input_message_content: {
+            //   message_text: "I challenge you to a game of Tap Dance! (gif)",
+            // },
             // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
             url: `${requestUrl.protocol}//${requestUrl.hostname}`,
             hide_url: true,
@@ -130,8 +130,35 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
             id: "gif5",
             title: "Play against a friend",
             caption: "Play against a friend5",
-            input_message_content: {
-              message_text: "I challenge you to a game of Tap Dance! (gif)",
+            // input_message_content: {
+            //   message_text: "I challenge you to a game of Tap Dance! (gif)",
+            // },
+            // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
+            url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+            hide_url: true,
+            description: "test description",
+            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/320.gif`,
+            gif_url: `${requestUrl.protocol}//${requestUrl.hostname}/640.gif`,
+            // thumbnail_width	Integer	Optional. Thumbnail width
+            // thumbnail_height	Integer	Optional. Thumbnail height
+          },
+          {
+            type: "gif",
+            id: "gif6",
+            title: "Play against a friend",
+            caption: "Play against a friend6",
+            // input_message_content: {
+            //   message_text: "I challenge you to a game of Tap Dance! (gif)",
+            // },
+            reply_markup: {
+              inline_keyboard: [
+                [
+                  {
+                    text: "Play",
+                    switch_inline_query_current_chat: '',
+                  }
+                ],
+              ],
             },
             // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
             url: `${requestUrl.protocol}//${requestUrl.hostname}`,
