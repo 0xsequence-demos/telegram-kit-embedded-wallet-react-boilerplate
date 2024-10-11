@@ -18,12 +18,6 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const update: any = await ctx.request.json();
 
-  const debugUrl = apiUrl(ctx.env.BOT_TOKEN, "sendMessage", {
-    chat_id: "7320660045",
-    text: JSON.stringify(update),
-  });
-  await fetch(debugUrl);
-
   if ("inline_query" in update) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const ilc = update.inline_query as any;
@@ -286,6 +280,45 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
             input_message_content: {
               message_text: "I challenge you to a game of Tap Dance!5",
             },
+            reply_markup: {
+              inline_keyboard: [
+                [
+                  {
+                    text: "Play",
+                    switch_inline_query_current_chat: "",
+                  },
+                ],
+              ],
+            },
+            // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
+            url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+            hide_url: true,
+            description: "test description3",
+            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/320.gif`,
+            // thumbnail_width	Integer	Optional. Thumbnail width
+            // thumbnail_height	Integer	Optional. Thumbnail height
+          },
+          {
+            type: "article",
+            id: "art6",
+            title: "Play against a friend6",
+            input_message_content: {
+              message_text: "I challenge you to a game of Tap Dance!6",
+            },
+            reply_markup: {
+              inline_keyboard: [
+                [
+                  {
+                    text: "Play",
+                    switch_inline_query_chosen_chat: {
+                      query: "",
+                      allow_user_chats: true,
+                      allow_group_chats: true,
+                    },
+                  },
+                ],
+              ],
+            },
             // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
             url: `${requestUrl.protocol}//${requestUrl.hostname}`,
             hide_url: true,
@@ -336,7 +369,7 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
           text: `Sequence Tap Dance is a demo of a Telegram app that uses Sequence to authenticate users. The source code for the telegram bot and the webapp are available at https://github.com/0xsequence/telegram-kit-embedded-wallet-react-boilerplate`,
         });
         await fetch(msgUrl);
-  
+
         const r: { ok: boolean } = await (
           await fetch(
             apiUrl(ctx.env.BOT_TOKEN, "answerCallbackQuery", responseData),
