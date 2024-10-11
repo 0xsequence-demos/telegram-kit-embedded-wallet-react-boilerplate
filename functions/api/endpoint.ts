@@ -382,7 +382,7 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
         chat_id: update.message.chat.id,
         game_short_name: "tap_dance",
       });
-    } else if (/\/menu/.test(update.message.text)) {
+    } else if (/\/init/.test(update.message.text)) {
       const requestUrl = new URL(ctx.request.url);
       url = apiUrl(ctx.env.BOT_TOKEN, "setChatMenuButton", {
         chat_id: update.message.chat.id,
@@ -394,7 +394,7 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
           },
         }),
       });
-    } else {
+    } else if (/\/start/.test(update.message.text)) {
       const requestUrl = new URL(ctx.request.url);
       url = apiUrl(ctx.env.BOT_TOKEN, "sendAnimation", {
         chat_id: update.message.chat.id,
