@@ -295,6 +295,33 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
             // thumbnail_width	Integer	Optional. Thumbnail width
             // thumbnail_height	Integer	Optional. Thumbnail height
           },
+          {
+            type: "article",
+            id: "art6",
+            title: "Play against a friend6",
+            input_message_content: {
+              // eslint-disable-next-line no-irregular-whitespace
+              message_text: `[​​​​​​​​​​​](${requestUrl.protocol}//${requestUrl.hostname}/happy.png) I challenge you to a game of Tap Dance!6`,
+              parse_mode: "markdown",
+            },
+            reply_markup: {
+              inline_keyboard: [
+                [
+                  {
+                    text: "Start",
+                    callback_game: "tap_dance",
+                  },
+                ],
+              ],
+            },
+            // reply_markup	InlineKeyboardMarkup	Optional. Inline keyboard attached to the message
+            url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+            hide_url: true,
+            description: "test description6",
+            thumbnail_url: `${requestUrl.protocol}//${requestUrl.hostname}/happy.png`,
+            // thumbnail_width	Integer	Optional. Thumbnail width
+            // thumbnail_height	Integer	Optional. Thumbnail height
+          },
         ].filter((p) => p.id.startsWith(ilc.query) || ilc.query === "all"),
       ),
       button: JSON.stringify({
