@@ -55,12 +55,12 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
               inline_keyboard: [
                 [
                   {
-                    text: "Start",
+                    text: "Play",
                     callback_game: {},
                   },
                   {
-                    text: "Play",
-                    url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+                    text: "Learn more",
+                    url: `https://t.me/sequence_tests_bot`,
                   },
                 ],
               ],
