@@ -382,6 +382,18 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
         chat_id: update.message.chat.id,
         game_short_name: "tap_dance",
       });
+    } else if (/\/menu/.test(update.message.text)) {
+      const requestUrl = new URL(ctx.request.url);
+      url = apiUrl(ctx.env.BOT_TOKEN, "setChatMenuButton", {
+        chat_id: update.message.chat.id,
+        menu_button: JSON.stringify({
+          type: "web_app",
+          text: "Play",
+          web_app: {
+            url: `${requestUrl.protocol}//${requestUrl.hostname}`,
+          },
+        }),
+      });
     } else {
       const requestUrl = new URL(ctx.request.url);
       url = apiUrl(ctx.env.BOT_TOKEN, "sendAnimation", {
