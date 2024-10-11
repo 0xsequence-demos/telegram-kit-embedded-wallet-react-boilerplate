@@ -328,7 +328,7 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
     }
   } else if ("message" in update) {
     let url = "";
-    if (/\/start/.test(update.message.text)) {
+    if (/\/game/.test(update.message.text)) {
       url = apiUrl(ctx.env.BOT_TOKEN, "sendGame", {
         chat_id: update.message.chat.id,
         game_short_name: "tap_dance",
@@ -337,16 +337,28 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
       const requestUrl = new URL(ctx.request.url);
       url = apiUrl(ctx.env.BOT_TOKEN, "sendMessage", {
         chat_id: update.message.chat.id,
-        text: update.message.text + " " + update.message.chat.id,
+        text: "Welcome to our demo bot! Play Sequence Tap Dance to see how Sequence integrates with Telegram Webapps",
         reply_markup: JSON.stringify({
           inline_keyboard: [
             [
               {
-                text: "Play",
+                text: "Play Tap Dance",
                 web_app: {
                   url: `${requestUrl.protocol}//${requestUrl.hostname}`,
                 },
               },
+              {
+                text: "Share1",
+                switch_inline_query_current_chat: '',
+              },
+              {
+                text: "Share2",
+                switch_inline_query_chosen_chat: {
+                  query: '',
+                  allow_user_chats: true,
+                  allow_group_chats: true
+                },
+              }
             ],
           ],
         }),
