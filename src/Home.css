@@ -1,0 +1,38 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.homepage__footer {
+  padding-top: 2em;
+}
+
+.homepage__marginBtNormal {
+  margin-bottom: 1em;
+}
+
+.ui-wrapper {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100vh;
+  width: 100vw;
+  overflow: scroll;
+}
+
+.scroller {
+  max-height: calc(100vh - 180px);
+  width: min( 600px, calc(100vw - 56px));
+  padding: 0px 20px 20px 20px ;
+  overflow: scroll;
+}

@@ -21,7 +21,6 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
   text-decoration: inherit;
 }
 a:hover {
@@ -34,6 +33,7 @@ body {
   place-items: center;
   min-width: 100px;
   min-height: 100vh;
+  overflow: hidden;
 }
 
 h1 {
@@ -48,7 +48,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #1b2b5f;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -87,4 +87,26 @@ button:focus-visible {
     bottom: auto !important;
     top: 0px !important;
   }
+}
+
+canvas {
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: -100;
+  width: 100vw;
+  height: 100vh;
+  transition:
+    0.2s filter linear,
+    0.2s -webkit-filter linear;
+}
+
+canvas.blur {
+  filter: blur(8px);
+}
+
+.topish {
+  margin-top: 25vh;
+  margin-bottom: 50vh;
 }
