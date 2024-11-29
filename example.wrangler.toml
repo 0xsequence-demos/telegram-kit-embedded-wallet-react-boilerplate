@@ -5,4 +5,5 @@ pages_build_output_dir = "./dist"
 BOT_TOKEN = "SECRETS_HERE"
 BOT_SECRET = "secret_123"
 
-
+[dev]
+port = 4444

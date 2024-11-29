@@ -18,7 +18,8 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
       JSON.stringify({ error: "BOT_SECRET not defined" }, null, 2),
     );
   }
-  const requestUrl = new URL(ctx.request.url);
+  const requestUrl = new URL(ctx.request.url.replace("http://", "https://"));
+  console.log(requestUrl);
   const webhookUrl = `${requestUrl.protocol}//${requestUrl.hostname}/api/endpoint`;
   const r: { ok: boolean } = await (
     await fetch(

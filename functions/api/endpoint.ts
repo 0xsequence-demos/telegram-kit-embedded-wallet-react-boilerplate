@@ -17,7 +17,7 @@ export const onRequest: PagesFunction<IEnv> = async (ctx) => {
     return new Response("Unauthorized", { status: 403 });
   }
 
-  const requestUrl = new URL(ctx.request.url);
+  const requestUrl = new URL(ctx.request.url.replace("http://", "https://"));
   const webappUrl = `${requestUrl.protocol}//${requestUrl.hostname}`;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
