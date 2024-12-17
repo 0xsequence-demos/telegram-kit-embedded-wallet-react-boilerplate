@@ -83,6 +83,13 @@ const Home = () => {
     getGameEngine().game.party = !!walletAddress;
   }, [walletAddress]);
 
+  const [coinBalance, setCoinBalance] = useState(0);
+
+  useEffect(() => {
+    // getGameEngine().game.party = true;
+    getGameEngine().game.onCoinBalanceChange = setCoinBalance;
+  }, [walletAddress]);
+
   return (
     <ThemeProvider theme={darkTheme}>
       <ToastProvider>
@@ -91,6 +98,7 @@ const Home = () => {
             {walletAddress && <MainConnected walletAddress={walletAddress} />}
           </div>
         </div>
+        <div className="coin-balance">{coinBalance}</div>
         <Menu
           network={network}
           setNetwork={setNetwork}

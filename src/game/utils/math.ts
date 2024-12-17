@@ -15,6 +15,17 @@ export function unlerpClamped01(min: number, max: number, value: number) {
   return clamp01(unlerp(min, max, value));
 }
 
+export function remap(
+  fromMin: number,
+  fromMax: number,
+  toMin: number,
+  toMax: number,
+  v: number,
+) {
+  const r = unlerp(fromMin, fromMax, v);
+  return lerp(toMin, toMax, r);
+}
+
 export function clamp(val: number, min: number, max: number) {
   return Math.min(max, Math.max(min, val));
 }
@@ -41,3 +52,7 @@ export function wrapRange(val: number, min: number, max: number) {
 }
 // console.log(wrapRange(-0.5, 1, 3));
 // console.log(wrapRange(2.95, 1, 3));
+
+export function dist2(x: number, y: number) {
+  return Math.sqrt(x * x + y * y);
+}

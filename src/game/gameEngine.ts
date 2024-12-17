@@ -19,7 +19,9 @@ export function getGameEngine() {
     const renderer = new WebGLRenderer({
       logarithmicDepthBuffer: true,
       antialias: userSettings.graphicsAntialias() === 1,
+      preserveDrawingBuffer: true,
     });
+    renderer.autoClear = false;
     let cleanup = initToneMapping(renderer);
     if (import.meta.hot) {
       import.meta.hot.accept("./initToneMapping", (mod) => {
@@ -77,9 +79,11 @@ export function getGameEngine() {
         game.partyFloat.value = oldGame.partyFloat.value;
         game.charHolder.position.copy(oldGame.charHolder.position);
         game.charHolder.rotation.copy(oldGame.charHolder.rotation);
-        game.camHolder.position.copy(oldGame.camHolder.position);
-        game.camHolder.rotation.copy(oldGame.camHolder.rotation);
+        game.camTruck.position.copy(oldGame.camTruck.position);
+        game.camTruck.rotation.copy(oldGame.camTruck.rotation);
         game.camera.position.copy(oldGame.camera.position);
+        game.onCoinBalanceChange = oldGame.onCoinBalanceChange;
+        game.coinBalance = oldGame.coinBalance;
       });
     }
     gameEngine = _gameEngine;

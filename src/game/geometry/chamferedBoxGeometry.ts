@@ -7,6 +7,7 @@ export async function createChamferedBoxGeometry(
   height: number,
   depth: number,
   chamfer = 0.005,
+  bias = 0,
 ) {
   const gltf = await loadGLTF("chamfered-box-base.glb");
   const proto = gltf.scene.children[0];
@@ -24,10 +25,12 @@ export async function createChamferedBoxGeometry(
   const halfDepth = depth * 0.5 - chamfer;
   for (let i3 = 0; i3 < posArr.length; i3 += 3) {
     tempPos.fromArray(posArr, i3);
+    const b = bias * Math.sign(tempPos.z);
     tempPos.multiplyScalar(chamfer);
+    const sz = Math.sign(tempPos.x);
     tempPos.x += halfWidth * Math.sign(tempPos.x);
     tempPos.y += halfHeight * Math.sign(tempPos.y);
-    tempPos.z += halfDepth * Math.sign(tempPos.z);
+    tempPos.z += halfDepth * Math.sign(tempPos.z) + b * sz;
     tempPos.toArray(posArr, i3);
   }
   geo.computeBoundingBox();

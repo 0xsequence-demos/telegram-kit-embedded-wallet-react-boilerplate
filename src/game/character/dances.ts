@@ -39,6 +39,40 @@ const danceBasic: Dance = {
   },
 };
 
+const running: Dance = {
+  arm: (target, side, time) => {
+    const halfPhase = Math.PI * 0.5 * side;
+    target.position.set(
+      // (sin(time * 8 + halfPhase) + 0.5) * side,
+      0,
+      -sin(time * 32 + halfPhase) - 0.25,
+      sin(time * 16 + halfPhase) * 1.2 - 0.5,
+    );
+    target.position.multiplyScalar(0.3);
+  },
+  leg: (target, side, time) => {
+    const halfPhase = Math.PI * 0.5 * side;
+    const a = time * 32 + halfPhase;
+    target.position.set(
+      0,
+      Math.max(-0.6, Math.sin(a) * 0.3 - 0.6),
+      Math.cos(a) * 0.6,
+    );
+  },
+  head: function (head: Object3D, time: number): void {
+    time *= 2;
+    head.position.y = sin(time * 8, 2) * 0.1 + 2.2;
+    head.rotation.x = cos(time * 8, 2) * 0.1;
+    head.rotation.z = sin(time * 4, 0) * 0.2;
+  },
+  body: function (body: Object3D, time: number): void {
+    body.rotation.x = cos(time * 8, 2) * 0.05 + 0.1;
+    body.rotation.z = cos(-time * 16, 2) * 0.02;
+    body.rotation.y = sin(-time * 4, 2) * 0.15;
+    body.position.y = Math.abs(cos(time * 16, 0.5)) * 0.1 - 0.3;
+  },
+};
+
 const greeting: Dance = {
   arm: (target, side, time) => {
     let wtime = time + (side * Math.PI) / 16;
@@ -80,4 +114,5 @@ const greeting: Dance = {
 export const charactetAnimations = {
   danceBasic,
   greeting,
+  running,
 };

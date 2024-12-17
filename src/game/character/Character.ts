@@ -21,6 +21,8 @@ export default class Character {
   arms: Limb[] = [];
   botPivot = new Object3D();
   happiness = new AnimatedNumber(0, 0.02);
+  running = new AnimatedNumber(0, 0.05);
+  idling = new AnimatedNumber(0, 0.02);
   constructor(piecesPool: Object3D, destination: Object3D) {
     destination.add(this.botPivot);
     this.head = getProtoTargetMesh().clone();
@@ -80,15 +82,20 @@ export default class Character {
     if (this.lastTime === undefined) {
       this.lastTime = time;
     }
+    this.idling.update(time - this.lastTime);
     this.happiness.update(time - this.lastTime);
-    this.lastTime = time;
+    this.running.update(time - this.lastTime);
     this.lastTime = time;
     const danceTime = time * (1.8 / 2);
     const danceBasic = charactetAnimations.danceBasic;
     const danceGreeting = charactetAnimations.greeting;
-    const ratio = this.happiness.value;
-    const invRatio = 1 - ratio;
-    const isHappy = this.happiness.value > 0.5;
+    const danceRunning = charactetAnimations.running;
+    let weightDance = this.happiness.value * this.idling.value;
+    let weightGreeting = 1 - weightDance;
+    const weightRunning = this.running.value;
+    weightDance *= 1 - weightRunning;
+    weightGreeting *= 1 - weightRunning;
+    const isHappy = weightDance > 0.5;
     const isBlinking = time % 1.5 < 0.125 || time % 3.3 < 0.125;
     const targetEyes = isHappy
       ? "eye-happy"
@@ -100,29 +107,33 @@ export default class Character {
     }
     for (const arm of this.arms) {
       arm.update(danceTime, [
-        { weight: ratio, dance: danceBasic.arm },
-        { weight: invRatio, dance: danceGreeting.arm },
+        { weight: weightDance, dance: danceBasic.arm },
+        { weight: weightGreeting, dance: danceGreeting.arm },
+        { weight: weightRunning, dance: danceRunning.arm },
       ]);
     }
     for (const leg of this.legs) {
       leg.update(danceTime, [
-        { weight: ratio, dance: danceBasic.leg },
-        { weight: invRatio, dance: danceGreeting.leg },
+        { weight: weightDance, dance: danceBasic.leg },
+        { weight: weightGreeting, dance: danceGreeting.leg },
+        { weight: weightRunning, dance: danceRunning.leg },
       ]);
     }
     applyDance(
       this.botPivot,
       [
-        { weight: ratio, dance: danceBasic.body },
-        { weight: invRatio, dance: danceGreeting.body },
+        { weight: weightDance, dance: danceBasic.body },
+        { weight: weightGreeting, dance: danceGreeting.body },
+        { weight: weightRunning, dance: danceRunning.body },
       ],
       danceTime,
     );
     applyDance(
       this.head,
       [
-        { weight: ratio, dance: danceBasic.head },
-        { weight: invRatio, dance: danceGreeting.head },
+        { weight: weightDance, dance: danceBasic.head },
+        { weight: weightGreeting, dance: danceGreeting.head },
+        { weight: weightRunning, dance: danceRunning.head },
       ],
       danceTime,
     );
