@@ -6,9 +6,7 @@ export const Footer = () => {
       <Text>
         Want to learn more? Read the{" "}
         <a
-          href={
-            "https://docs.sequence.xyz/solutions/wallets/sequence-kit/overview/"
-          }
+          href={"https://docs.sequence.xyz/"}
           target="_blank"
           rel="noreferrer "
         >

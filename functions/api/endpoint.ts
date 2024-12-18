@@ -3,7 +3,7 @@ interface IEnv {
   BOT_SECRET: string; // A-Z, a-z, 0-9, _ and -
 }
 
-const botFullDescription = `Sequence Tap Dance is a demo of a Telegram app that uses Sequence to authenticate users. The source code for the telegram bot and the webapp are available at https://github.com/0xsequence/telegram-kit-embedded-wallet-react-boilerplate`;
+const botFullDescription = `Sequence Tap Dance is a demo of a Telegram app that uses Sequence to authenticate users. The source code for the telegram bot and the webapp are available at https://github.com/0xsequence-demos/telegram-sequencejs-react-boilerplate`;
 
 /**
  * Return url to telegram api, optionally with parameters added

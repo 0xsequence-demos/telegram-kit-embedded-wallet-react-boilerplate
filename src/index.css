@@ -49,6 +49,7 @@ button {
   font-weight: 500;
   font-family: inherit;
   background-color: #1b2b5f;
+  margin:2px;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -58,6 +59,24 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.pending {
+  border-color: #1b2b5f;
+  animation: pendingFade 0.5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes pendingFade {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @media (prefers-color-scheme: light) {

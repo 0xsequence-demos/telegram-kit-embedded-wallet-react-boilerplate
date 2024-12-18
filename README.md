@@ -1,8 +1,8 @@
-# Sequence Kit Embedded Wallet React Starter Boilerplate
+# Sequence.js Embedded Wallet React Starter Boilerplate
 
-Starter Sequence Embedded Wallet boilerplate that uses [Sequence Kit](https://github.com/0xsequence/kit) with React.
+Starter Sequence Embedded Wallet boilerplate that uses [Sequence.js](https://github.com/0xsequence/sequence.js) with React.
 
-The webapp portion of this telegram bot can be accessed directly [here](https://telegram-kit-embedded-wallet-react-boilerplate.sequence-demos.xyz).
+The webapp portion of this telegram bot can be accessed directly [here](https://telegram-sequencejs-react-boilerplate.sequence-demos.xyz).
 
 ## Quickstart
 
