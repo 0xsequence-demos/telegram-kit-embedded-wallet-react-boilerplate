@@ -7,27 +7,33 @@ import {
   TextInput,
 } from "@0xsequence/design-system";
 import { ChangeEvent, useEffect, useState } from "react";
-import { useSignMessage } from "wagmi";
+import { sequence } from "../sequence";
+import { Network } from "@0xsequence/waas";
 
-const TestSignMessage = () => {
-  const [message, setMessage] = useState<string>();
-  const { isPending, data, signMessage: signMessageHook } = useSignMessage();
+const TestSignMessage = (props: { network?: Network }) => {
+  const [messageToSign, setMessageToSign] = useState<string>("");
+  const [signature, setSignature] = useState<string>();
   const [textCopied, setTextCopied] = useState<boolean>(false);
+  const [isPending, setIsPending] = useState<boolean>(false);
 
   const onChangeMessage = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    setMessage(value);
+    setMessageToSign(value);
   };
 
-  const signMessage = () => {
-    if (!message) return;
+  const signMessage = async () => {
+    setIsPending(true);
+    const signature = await sequence.signMessage({
+      message: messageToSign,
+      network: props.network?.id,
+    });
 
-    signMessageHook({ message });
+    setSignature(signature.data.signature);
   };
 
   const copySignature = () => {
-    if (!data) return;
-    window.navigator.clipboard.writeText(data);
+    if (!signature) return;
+    window.navigator.clipboard.writeText(signature);
     setTextCopied(true);
   };
 
@@ -63,14 +69,14 @@ const TestSignMessage = () => {
           </button>
         </Box>
         <Card>
-          {data ? (
+          {signature ? (
             <Box
               display="flex"
               flexDirection="column"
               gap="8"
               style={{ maxWidth: "700px" }}
             >
-              <Text className="break-word">Signature: {data}</Text>
+              <Text className="break-word">Signature: {signature}</Text>
               <button onClick={copySignature} className="margin-left-auto">
                 {!textCopied ? "Copy" : "Copied"}
               </button>

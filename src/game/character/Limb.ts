@@ -2,8 +2,8 @@ import { AxesHelper, Mesh, Object3D, Vector3 } from "three";
 import { getProtoTargetMesh } from "./protoTargetMesh";
 import { LimbDanceLayer } from "./LimbDanceLayer";
 import { unlerpClamped01 } from "../utils/math";
+import { searchParams } from "./searchParams";
 
-const searchParams = new URLSearchParams(window.location.search);
 const debug = searchParams.has("debug");
 const __tempVec3 = new Vector3();
 const __tempVec3B = new Vector3();

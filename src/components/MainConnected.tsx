@@ -1,19 +1,8 @@
 import { Text } from "@0xsequence/design-system";
-import { useAccount } from "wagmi";
-import Disconnector from "./Disconnector";
-import { Missing } from "./Missing";
+import { Address } from "viem";
 
-const MainConnected = () => {
-  const { address, chain, chainId } = useAccount();
-  if (!address) {
-    return <Missing>an address</Missing>;
-  }
-  if (!chain) {
-    return <Missing>a chain</Missing>;
-  }
-  if (!chainId) {
-    return <Missing>a chainId</Missing>;
-  }
+const MainConnected = (props: { walletAddress: Address | null }) => {
+  const { walletAddress } = props;
   return (
     <>
       <Text
@@ -22,9 +11,8 @@ const MainConnected = () => {
         color="text100"
         wordBreak="break-word"
       >
-        Connected with address: {address}
+        Connected with address: {walletAddress}
       </Text>
-      <Disconnector />
     </>
   );
 };

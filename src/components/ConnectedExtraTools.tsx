@@ -1,23 +1,16 @@
 import { Box, Text } from "@0xsequence/design-system";
-import { useAccount } from "wagmi";
-import ChainInfo from "./ChainInfo";
-import Disconnector from "./Disconnector";
 import TestSignMessage from "./TestSignMessage";
-import TestVerifyMessage from "./TestVerifyMessage";
-import TestSendTransaction from "./TestSendTransaction";
-import { Missing } from "./Missing";
+import { Address } from "viem";
+import { NetworkSwitch } from "./NetworkSwitch";
+import { Dispatch, SetStateAction } from "react";
+import { Network } from "@0xsequence/waas";
 
-const ConnectedExtraTools = () => {
-  const { address, chain, chainId } = useAccount();
-  if (!address) {
-    return <Missing>an address</Missing>;
-  }
-  if (!chain) {
-    return <Missing>a chain</Missing>;
-  }
-  if (!chainId) {
-    return <Missing>a chainId</Missing>;
-  }
+const ConnectedExtraTools = (props: {
+  network: Network | null;
+  setNetwork: Dispatch<SetStateAction<Network | null>>;
+  walletAddress: Address;
+}) => {
+  const { network, setNetwork, walletAddress } = props;
   return (
     <>
       <Text
@@ -26,14 +19,11 @@ const ConnectedExtraTools = () => {
         color="text100"
         wordBreak="break-word"
       >
-        Connected with address: {address}
+        Connected with address: {walletAddress}
       </Text>
-      <Disconnector />
-      <ChainInfo chain={chain} address={address} />
+      <NetworkSwitch network={network} setNetwork={setNetwork} />
       <Box display="flex" flexDirection="column" gap="4">
         <TestSignMessage />
-        <TestVerifyMessage chainId={chainId} />
-        <TestSendTransaction chainId={chainId} />
       </Box>
     </>
   );
